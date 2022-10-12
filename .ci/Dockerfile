@@ -16,8 +16,10 @@ RUN yarn build
 
 # Runner App
 FROM nginx:latest as runner
-COPY --from=builder /app/build /app
-COPY --from=builder /app/nginx.conf /etc/nginx/nginx.conf
+COPY --from=builder /app/dist /app
+COPY --from=builder /app/.ci/nginx.conf /etc/nginx/nginx.conf
+COPY --from=builder /app/.ci/conf.d /etc/nginx/conf.d
+COPY --from=builder /app/node_modules /app/node_modules
 
 # Install node via nvm
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
