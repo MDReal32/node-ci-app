@@ -6,7 +6,7 @@ COPY .. /app
 WORKDIR /app
 
 # Install node dependencies
-RUN yarn && yarn build
+RUN --mount=type=cache,target=/root/.yarn YARN_CACHE_FOLDER=/root/.yarn yarn && yarn build
 
 # Test App
 RUN yarn test
