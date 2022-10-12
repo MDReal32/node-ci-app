@@ -26,11 +26,9 @@ RUN apt-get update && apt-get install -y curl gnupg2 && \
     curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
     apt-get install -y nodejs
 
-# Install pm2
-RUN npm install pm2 -g
-
-# Run app with pm2
-RUN pm2 start /app/index.js --name "app"
+# Run node app
+RUN echo "node /app/index.js &" > /app/run.sh && \
+    chmod +x /app/run.sh
 
 EXPOSE 80
 CMD nginx -g "daemon off;"
