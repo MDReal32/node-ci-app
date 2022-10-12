@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  node-ci-app:
+    build:
+        context: ..
+        dockerfile: .ci\Dockerfile
+    ports:
+      - "3500:80"
