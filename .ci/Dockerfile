@@ -21,9 +21,10 @@ COPY --from=builder /app/.ci/nginx.conf /etc/nginx/nginx.conf
 COPY --from=builder /app/.ci/conf.d /etc/nginx/conf.d
 COPY --from=builder /app/node_modules /app/node_modules
 
-# Install node via nvm
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-RUN . ~/.nvm/nvm.sh && nvm install node
+# Install node via apt
+RUN apt-get update && apt-get install -y curl gnupg2 && \
+    curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
+    apt-get install -y nodejs
 
 # Install pm2
 RUN npm install pm2 -g
