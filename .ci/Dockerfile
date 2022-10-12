@@ -31,4 +31,4 @@ RUN echo "node /app/index.js &" > /app/run.sh && \
     chmod +x /app/run.sh
 
 EXPOSE 80
-CMD nginx -g "daemon off;"
+CMD nohup /app/run.sh && nginx -g "daemon off;"
