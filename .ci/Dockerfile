@@ -2,7 +2,7 @@
 FROM node:latest as builder
 
 # Copy source to container
-COPY . /app
+COPY .. /app
 WORKDIR /app
 
 # Install node dependencies
