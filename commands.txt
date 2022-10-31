@@ -1,0 +1,7 @@
+yarn snyk auth
+yarn snyk monitor
+
+docker scan <image_name>
+
+docker compose build
+docker scan example-nodejs-docker-snyk-test-app
